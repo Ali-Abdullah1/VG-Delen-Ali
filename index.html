@@ -216,24 +216,28 @@
 
             
             function displayProductInfo() {
+                // Hämta produkter från localStorage eller använd en tom array om det inte finns några produkter
                 const products = JSON.parse(localStorage.getItem('products')) || [];
                 const productInfo = document.getElementById('produkten');
                 const totalPriceElement = document.getElementById('total-price');
 
+                // Rensa innehållet i varukorg och totalpris
                 productInfo.innerHTML = ''; 
                 totalPriceElement.innerHTML = ''; 
 
+                // Om varukorgen är tom, visa meddelande och avsluta funktionen
                 if (products.length === 0) {
                     productInfo.textContent = 'Din varukorg är tom.';
                     return;
                 }
 
                 let totalPrice = 0;
-
+                // Loopa igenom varje produkt i varukorgen och skapa ett gränssnitt för varje produkt
                 products.forEach(product => {
                     const productContainer = document.createElement('div');
                     productContainer.classList.add('product-container');
 
+                    // Skapa element för produktinfo (titel, bild, pris) och lägg till i container
                     const productInfoElement = document.createElement('div');
                     productInfoElement.innerHTML = `
                         <h3>${product.title}</h3>
@@ -241,14 +245,14 @@
                         <p>Pris: ${product.price} kr</p>
                     `;
                     productContainer.appendChild(productInfoElement);
-
+                    // Skapa en input för kvantitet och lägg till i container
                     const quantityElement = document.createElement('input');
                     quantityElement.type = 'number';
                     quantityElement.value = product.quantity;
                     quantityElement.min = 1;
                     quantityElement.classList.add('quantity-input');
                     productContainer.appendChild(quantityElement);
-
+                     // Skapa en knapp för att ta bort produkten och lägg till i container
                     const removeButton = document.createElement('button');
                     removeButton.textContent = 'Ta bort';
                     removeButton.classList.add('btn', 'btn-danger');
@@ -256,7 +260,7 @@
 
                     productInfo.appendChild(productContainer);
 
-                
+                    // Totalpris
                     const productTotalPrice = product.quantity * product.price;
                     totalPrice += productTotalPrice;
 
@@ -274,11 +278,17 @@
             }
 
             function removeProductFromCart(product) {
+                // Hämta varukorgen från localStorage eller använd en tom array om det inte finns några produkter sparade
                 let cart = JSON.parse(localStorage.getItem('products')) || [];
+                 // Hitta index för den produkten som ska tas bort i varukorgen
                 const productIndex = cart.findIndex(item => item.id === product.id);
+                // Om produkten finns i varukorgen (index är inte -1)
                 if (productIndex !== -1) {
+                     // Ta bort produkten från varukorgen genom att använda splice() för att ta bort ett element på det specifika indexet
                     cart.splice(productIndex, 1);
+                    // Uppdatera varukorgen i localStorage
                     localStorage.setItem('products', JSON.stringify(cart));
+                    // Uppdatera gränssnittet för varukorgen på webbsidan
                     displayProductInfo(); 
                 } else {
                     console.error('Product not found');
@@ -287,11 +297,14 @@
 
           
             function updateProductQuantity(product, newQuantity) {
+                // Kontrollera om den nya kvantiteten är ett numeriskt värde och större än 0
                 if (!isNaN(newQuantity) && newQuantity > 0) {
                     let cart = JSON.parse(localStorage.getItem('products')) || [];
+                    // Hittar produkten baserat på produktens ID
                     const existingProduct = cart.find(item => item.id === product.id);
 
                     if (existingProduct) {
+                        // Uppdatera kvantiteten för produkten 
                         existingProduct.quantity = newQuantity;
                         localStorage.setItem('products', JSON.stringify(cart));
                         displayProductInfo();
