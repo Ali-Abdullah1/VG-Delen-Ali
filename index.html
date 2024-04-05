@@ -107,7 +107,7 @@
                 Some products here...
             </div>
             <div id="total-price"></div>
-            <button id="clear-cart-btn" class="btn btn-danger mt-3">Clear Cart</button>
+            <button id="clear-cart-btn" class="btn btn-danger mt-3">Töm varukorg</button>
         </div>
     </div>
 
@@ -182,7 +182,8 @@
 
         function sendData(product) {
         let existingProducts = [];
-
+        
+          // Hämta befintliga produkter från localStorage om det finns några
         if (localStorage.getItem("products")) {
             existingProducts = JSON.parse(localStorage.getItem("products"));
         }
@@ -192,10 +193,12 @@
         if (existingProduct) {
             existingProduct.quantity += 1;
         } else {
+             // Om produkten inte finns i varukorgen, lägg till den med antalet 1
             product.quantity = 1;
             existingProducts.push(product);
         }
 
+        // Spara den uppdaterade varukorgen till localStorage som JSON-sträng
         localStorage.setItem("products", JSON.stringify(existingProducts));
 
         displayProductInfo();
@@ -221,7 +224,7 @@
                 totalPriceElement.innerHTML = ''; 
 
                 if (products.length === 0) {
-                    productInfo.textContent = 'Your shopping cart is empty.';
+                    productInfo.textContent = 'Din varukorg är tom.';
                     return;
                 }
 
@@ -235,7 +238,7 @@
                     productInfoElement.innerHTML = `
                         <h3>${product.title}</h3>
                         <img src="${product.image}" alt="${product.title}" class="product-img">
-                        <p>Price: ${product.price} kr</p>
+                        <p>Pris: ${product.price} kr</p>
                     `;
                     productContainer.appendChild(productInfoElement);
 
@@ -247,7 +250,7 @@
                     productContainer.appendChild(quantityElement);
 
                     const removeButton = document.createElement('button');
-                    removeButton.textContent = 'Remove';
+                    removeButton.textContent = 'Ta bort';
                     removeButton.classList.add('btn', 'btn-danger');
                     productContainer.appendChild(removeButton);
 
@@ -267,7 +270,7 @@
                     });
                 });
 
-                totalPriceElement.textContent = `Total Price: ${Math.round(totalPrice)} kr`;
+                totalPriceElement.textContent = `Total Pris: ${Math.round(totalPrice)} kr`;
             }
 
             function removeProductFromCart(product) {
