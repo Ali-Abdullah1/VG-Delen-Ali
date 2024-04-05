@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Länka till din externa CSS-fil -->
+    <style>
+        
+        body {
+            text-align: center; /* Centrera all text */
+        }
+        #productImage {
+            max-width: 300px;
+            max-height: 300px;
+        }
+        
+    </style>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Tack för din beställning!</h1>
+            <p>Din beställning har mottagits och kommer att behandlas inom kort.</p>
+            <div id="productInfo">
+                <p>Produkten du har beställt är: <span id="productName"></span></p>
+                <img id="productImage" src="" alt="Product Image">
+            </div>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="row fixed-bottom">
+        <div class="col bg-success">
+        
+        </div>
+    </footer>
+
+    <script>
+        // Hämta produktinformation från localStorage och visa den på bekräftelsesidan
+        window.onload = function() {
+            var product = JSON.parse(localStorage.getItem("product"));
+            if (product) {
+                document.getElementById("productName").textContent = product.title;
+                document.getElementById("productImage").src = product.image;
+            }
+        };
+
+        function displayProducts(category, url) {
+            // Hämta produkter från API:et
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Visa produkterna på sidan
+                    var productList = document.getElementById("product-list");
+                    productList.innerHTML = "";
+                    data.forEach(product => {
+                        var productCard = document.createElement("div");
+                        productCard.className = "card";
+                        productCard.innerHTML = `
+                            <img src="${product.image}" class="card-img-top" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.title}</h5>
+                                <p class="card-text">$${product.price}</p>
+                                <button class="btn btn-primary" onclick="addToCart('${product.title}', '${product.image}')">Add to Cart</button>
+                            </div>
+                        `;
+                        productList.appendChild(productCard);
+                    });
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+
+.headboard {
+    font-weight: 1000;
+    font-size: 1.2em;
+    padding: 0px 15px;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+.headboard .a:hover{
+    text-decoration: underline;
+}
+.headboard .b:hover{
+    text-decoration: underline;
+}
+.headboard .c:hover{
+    text-decoration: underline;
+}
+.headboard .d:hover{
+    text-decoration: underline;
+}
+
+#navbar-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100%;
+
+}
+
+#wrapper-gender {
+    background: #76885B;
+
+}
+
+.cartBTN {
+    width: 120px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: black;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+
+
+.cartBTN:hover {
+    background: white;
+    color: black;
+
+}
+
+.align-bottom-left {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}
+
+body .container-fluid {
+    background: #627254;
+    margin-top: -10px;
+    margin-bottom: -10px;
+
+
+}
+
+body {
+    background: #D6DAC8;
+    overflow-x: hidden;
+}
+.collapse navbar-collapse{
+    border: 1px solid black;
+    font-size: 2em;
+}
+
+.navbar-collapse .navbar-nav li {
+    font-weight: 600;
+
+}
+
+.navbar-toggler:not(.collapsed) {
+    border: 1px solid black;
+}
+
+.searchBTNSmall {
+    width: 100px;
+    height: 37px;
+    border: 1px solid black;
+    font-weight: 500;
+    background: transparent;
+    border-radius: 6px;
+
+
+}
+
+.navbar-brand {
+    font-weight: 1000;
+}
+
+.list-inline-item:hover{
+    text-decoration: underline;
+}
+
+.offcanvas {
+    max-width: 300px; /* Adjust width as needed */
+}
+
+/* Style for the cart header */
+.offcanvas-header {
+    background-color: #f8f9fa; /* Light background color */
+}
+
+/* Style for the cart title */
+.offcanvas-title {
+    color: #343a40; /* Dark text color */
+}
+
+/* Style for the close button */
+.btn-close {
+    color: #6c757d; /* Button close color */
+}
+
+/* Style for the cart body */
+.offcanvas-body {
+    padding: 10px; /* Add padding */
+}
+
+/* Style for the cart products */
+.product-item {
+    border-bottom: 1px solid #dee2e6; /* Border between products */
+    padding: 10px 0; /* Add padding */
+}
+
+/* Style for the product title */
+.product-item h3 {
+    margin-bottom: 5px; /* Add spacing below title */
+}
+
+/* Style for the product price */
+.product-item p {
+    margin-bottom: 5px; /* Add spacing below price */
+}
+
+/* Style for the product image */
+.product-img {
+    max-width: 30%; /* Ensure image doesn't exceed container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.product-item h3 {
+    font-size: 1.2em;
+}
+

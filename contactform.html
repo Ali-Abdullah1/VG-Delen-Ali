@@ -1,0 +1,73 @@
+
+
+<!--Main Content-->
+<div class="row" >
+    <form action="">
+        <div>
+            <label for="name">Namn</label> <br>
+            <input type="text" id="name" placeholder="Förnamn Efternamn" class="form-control" required onchange="checkNameLength()">
+        </div>
+        <br>
+        <div>
+            <label for="Email">Email</label> <br>
+            <input type="text" id="email" placeholder="email@exmaple.com" class="form-control" required onchange="validateEmail()">
+        </div>
+        <br>
+        <div>
+            <label for="Meddelande"></label><br>
+            <textarea id="Meddelande" rows="3" required class="form-control" placeholder="Skriv ditt meddelande"></textarea>
+        </div>
+        <input type="submit" value="Skicka" class="form-control pointer color">
+    </form>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+<script>
+            var inputName = document.getElementById("name");
+
+        inputName.addEventListener("keyup", function() {
+        if (this.value.length > 50) {
+            this.value = this.value.substring(0, 0);
+            alert("Max 50 tecken")
+        }
+        });
+
+        function checkNameLength() {
+        let inputText = document.getElementById('name').value;
+        if (inputText.length >= 2) {
+
+            console.log("rätt namn");
+        } else {
+            alert("namnet måste innehålla minst 2");
+            document.getElementById('name').value = "";
+        }
+        }
+
+        function validateEmail() {
+        let inputEmail = document.getElementById('email').value;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(inputEmail)) {
+
+            console.log("rätt");
+        } else {
+            alert("Måste vara i korrekt format (email@exmaple.com)");
+            document.getElementById('email').value = "";
+        }
+    }
+        var inputEmail = document.getElementById("email");
+
+        inputEmail.addEventListener("keyup", function() {
+        if (this.value.length > 50) {
+            this.value = this.value.substring(0, 0);
+            alert("Max 50 tecken")
+        }
+        });
+
+</script>
+
+</html>
